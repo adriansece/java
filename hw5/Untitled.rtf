@@ -1,0 +1,222 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2706
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Course.java\
+\
+package TEST1;\
+public class Course \{\
+    \
+    private double score;\
+    private boolean passed;\
+    private String courseId;\
+\
+    public void setScore(double score) \
+    \{\
+        this.score = score;\
+    \}\
+\
+    public double getScore() \
+    \{\
+        return score;\
+    \}\
+   \
+    public void setCourseId(String courseId) \
+    \{\
+        this.courseId = courseId;\
+    \}\
+   \
+    public Course(String courseId, boolean passed, double score) \
+    \{\
+        super();\
+        this.courseId = courseId;\
+        this.passed = passed;\
+        this.score = score;\
+    \}\
+    \
+    public void setPassed(boolean passed) \
+    \{\
+        this.passed = passed;\
+    \}\
+\
+    public String getCourseId() \
+    \{\
+        return courseId;\
+    \}\
+\
+    public boolean isPassed() \
+    \{\
+        return passed;\
+    \}\
+   \
+    @Override\
+    public String toString() \{\
+        return "CourseId= " + courseId + ", passed= " + passed + ", score= " + score + "]";\
+    \}\
+   \
+\}\
+\
+Moodle.java\
+\
+package TEST1;\
+import java.util.HashMap;\
+import java.util.Map;\
+import java.util.ArrayList;\
+\
+\
+public class Moodle \{\
+   \
+    ArrayList<Student> users=new ArrayList<Student>();\
+\
+    public ArrayList<Student> getUsers() \
+    \{\
+        return users;\
+    \}\
+\
+    public void setUsers(ArrayList<Student> users) \
+    \{\
+        this.users = users;\
+    \}\
+   \
+    public  Map<Student,Integer> toMap()\
+    \{\
+        Map<Student,Integer> studentMap=new HashMap<Student, Integer>();\
+        for(Student studObj:users)\
+        \{\
+            int noOfCourses=studObj.getCourses().size();\
+            studentMap.put(studObj, noOfCourses);\
+        \}\
+        return studentMap;\
+    \}\
+\
+    public static void main(String args[])\
+    \{\
+        Moodle moodle=new Moodle();\
+\
+        ArrayList<Student> students=new ArrayList<Student>();\
+        Student stud=new Student("Adrian", "AdrianS@upb.ro");\
+        stud.addCourse(new Course("C1", true,75));\
+        stud.addCourse(new Course("C2", false,45));\
+        students.add(stud);\
+        Student stud2=new Student("Alexandra", "AlexandraK@upb.ro");\
+        stud2.addCourse(new Course("C2", false,35));\
+        stud2.addCourse(new Course("C3", true,80));\
+        stud2.addCourse(new Course("C4", false,20));\
+        stud2.addCourse(new Course("C5", true,80));\
+        students.add(stud2);\
+\
+        moodle.setUsers(students);\
+        System.out.println(moodle.getUsers());\
+       \
+        Map<Student,Integer> studentMap=moodle.toMap();\
+       \}\
+\}\
+\
+Student.java\
+\
+package TEST1;\
+import java.util.ArrayList;\
+\
+public class Student implements Comparable<Student>\{\
+    private String userName;\
+    private String email;\
+    private ArrayList<Course> courses;\
+   \
+    public Student(String userName, String email) \
+    \{\
+        super();\
+        courses=new ArrayList<Course>();\
+        this.userName = userName;\
+        this.email = email;\
+    \}\
+    \
+    public void setUserName(String userName) \
+    \{\
+        this.userName = userName;\
+    \}\
+    \
+        public String getUserName() \
+    \{\
+        return userName;\
+    \}\
+    \
+    public void addCourse(Course course)\
+    \{\
+        boolean doesCourseExist = false;\
+   \
+        for(Course c:courses)\
+        \{\
+        \}\
+    \}\
+\
+    public String getEmail() \
+    \{\
+        return email;\
+    \}\
+    public double getAverageGrade()\
+    \{\
+        double passedScoreAddition = 0;\
+        int passedScoreContor = 0;\
+        for(Course c:courses)\
+        \{\
+            if(c.isPassed())\
+            \{\
+                passedScoreAddition = passedScoreAddition+c.getScore();\
+                passedScoreContor++;\
+            \}\
+        \}\
+        return passedScoreAddition/passedScoreContor;\
+    \}\
+\
+    public void setEmail(String email) \
+    \{\
+        this.email = email;\
+    \}\
+   \
+    public ArrayList<Course> getCourses() \
+    \{\
+        return courses;\
+    \}\
+   \
+    @Override\
+    public int hashCode() \
+    \{\
+        final int prime = 31;\
+        int result = 1;\
+        result = prime * result + ((email == null) ? 0 : email.hashCode());\
+        result = prime * result + ((userName == null) ? 0 : userName.hashCode());\
+        return result;\
+    \}\
+    @Override\
+    public boolean equals(Object obj) \
+    \{\
+        \
+        if (!(obj instanceof Student))\
+            return false;\
+        if (this == obj)\
+            return true;\
+        Student other = (Student) obj;\
+        if (email == null) \{\
+            if (other.email != null)\
+                return false;\
+        \} else if (!email.equals(other.email))\
+            return false;\
+        if (userName == null) \{\
+            if (other.userName != null)\
+                return false;\
+        \} else if (!userName.equals(other.userName))\
+            return false;\
+        return true;\
+    \}\
+    @Override\
+    public int compareTo(Student obj) \{\
+        return this.getUserName().compareTo(obj.getUserName());\
+    \}\
+    @Override\
+    public String toString() \{\
+        return "Student Name=" + userName + ", email=" + email + ", courses=" + courses + "]";\
+    \}\
+\}}

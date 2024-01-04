@@ -1,0 +1,6 @@
+Budapest 500
+Athena 750
+Berlin 800
+Zagreb 810
+Barcelona 900
+Paris 1100

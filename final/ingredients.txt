@@ -1,0 +1,4 @@
+rosii 2
+patrunjel 3
+marar 3
+sare 1

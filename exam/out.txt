@@ -1,0 +1,7 @@
+Varianta 1[Budapest, Athena, Berlin, Zagreb]
+Varianta 2[Athena, Berlin, Zagreb, Barcelona]
+Varianta 3[Berlin, Zagreb, Barcelona]
+Varianta 4[Zagreb, Barcelona, Paris, Budapest]
+Varianta 5[Barcelona, Paris, Budapest, Athena]
+Varianta 6[Paris, Budapest, Athena, Berlin]
+Cea mai scumpa excursie este: 4 [Zagreb, Barcelona, Paris, Budapest]

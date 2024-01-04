@@ -1,0 +1,4 @@
+1 chocolate 5 30
+2 milk 4 25
+3 egg 3 100
+4
